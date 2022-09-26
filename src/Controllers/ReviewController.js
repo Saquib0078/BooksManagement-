@@ -16,8 +16,9 @@ try {
 
   let data=req.body
   if(!body(data)) return res.status(400).send({status:false,msg:"Input is missing"})
+  if(data.reviewedBy){ if(!data.reviewedBy)  return res.status(400).send({status:false,msg:"reviewedBy is mandatory"})}
 
-  if(!isValidname(data.reviewedBy)) return res.status(400).send({status:false,msg:"name is mandatory"})
+  if(!isValidname(data.reviewedBy)) return res.status(400).send({status:false,msg:"name should be valid"})
   if(!validator.isDate(data.reviewedAt)) return res.status(400).send({status:false,msg:"date is mandatory"})
   if(!data.rating ) return res.status(400).send({status:false,msg:"rating is mandatory"})
   if((!(data.rating<6) && (data.rating>0))) return res.status(400).send({status:false,msg:"rating should be between 1 to 5"})
@@ -41,7 +42,7 @@ try{
 data = req.body
 const{rating, reviewedBy,review } = data
 if(!body(data))return res.status(400).send({status:false,msg:"Input is missing"})
-if((!(rating) && (reviewedBy) && (review))) return res.status(400).send({status:false,msg: "You can Only update: Rating,reviewedBy,reviewedBy "})
+if(data){if((!(rating) && (reviewedBy) && (review))) return res.status(400).send({status:false,msg: "You can Only update: Rating,reviewedBy,review "})}
 if((!(rating<6) && (rating>0))) return res.status(400).send({status:false,msg:"rating should be between 1 to 5"})
 
 bookId=req.params.bookId

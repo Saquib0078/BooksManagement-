@@ -59,7 +59,6 @@ const getBooks=async (req,res)=>{
             }
             return res.status(200).send({ status: false, message: "Books list", count: getData.length, data: getData })
         } else {
-
             const { userId, category, subcategory } = booksData
             const filter = {}
 
@@ -103,7 +102,7 @@ const getBooks=async (req,res)=>{
     if (!getBooks) return res.status(404).send({status:false, msg: "Data not found"})
 
     let getId=getBooks._id
-    let getData=await ReviewModel.find({bookId:getId}).select({bookId:1,reviewedBy:1,reviewedAt:1,rating:1,review:1})
+    let getData=await ReviewModel.find({bookId:getId,isDeleted:false}).select({bookId:1,reviewedBy:1,reviewedAt:1,rating:1,review:1})
     if (getData.length == 0) {
         internlist = "No Reviews!!"
     } 

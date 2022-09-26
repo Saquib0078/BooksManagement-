@@ -3,7 +3,7 @@ const mongoose=require ('mongoose')
 
 // for personName
 const isValidname=function(name){
-    if(/^[A-Za-z, ]{2,80}$/.test(name.trim())) return true
+    if(/^[A-Za-z, ]{2,80}$/.test(name)) return true
     return false
   }
   
