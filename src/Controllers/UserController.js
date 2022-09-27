@@ -11,7 +11,7 @@ const CreateUser = async (req, res) => {
 
     if (!body(data))
       return res.status(400).send({ status: false, msg: "Input Should not be Empty" });
-
+ 
     if (!data.title)
       return res.status(400).send({ status: false, msg: "title is mandatory" });
     if (!titleValid(data.title))

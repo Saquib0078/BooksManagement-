@@ -8,6 +8,7 @@
     "routes": "^2.1.0",
     "validator": "^13.7.0"
   },
+
   "scripts": {
     "start": "npx nodemon src/index.js"
   }
