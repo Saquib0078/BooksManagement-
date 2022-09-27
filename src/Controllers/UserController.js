@@ -1,14 +1,13 @@
 const UserModel = require("../Models/UserModel.js");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
-const validation = require("../middleware/validation");
 const { isValidname, email, titleValid , body} = require("../middleware/validation");
 
 
 const CreateUser = async (req, res) => {
   try {
     let data = req.body;
-
+    
     if (!body(data))
       return res.status(400).send({ status: false, msg: "Input Should not be Empty" });
  
@@ -19,7 +18,7 @@ const CreateUser = async (req, res) => {
      
     if (!data.phone)
       return res.status(400).send({ status: false, msg: "phone is mandatory" });
-    if (!validation.mobile(data.phone))
+    if (!validator.isMobilePhone(data.phone))
       return res.status(400).send({ status: false, msg: "phone is not valid" });
 
     if (!data.name)

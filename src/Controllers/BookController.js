@@ -1,8 +1,17 @@
+
+=======
+const UserModel = require("../Models/UserModel")
+const {body,isValidObjectId,isValidISBN, validation} = require("../middleware/validation");
+>>>>>>> 487bd626555b4c6299f7a5f21e71f3ba415bf7cf
 const BooksModel = require("../Models/BooksModel");
 const UserModel = require("../Models/UserModel")
 const ReviewModel = require("../Models/ReviewModel");
+<<<<<<< HEAD
 const {body,isValidObjectId,isValidISBN, validation} = require("../middleware/validation");
 const valid=require("validator");
+=======
+
+>>>>>>> 487bd626555b4c6299f7a5f21e71f3ba415bf7cf
 
 
 let createBook= async function(req,res){
@@ -140,8 +149,6 @@ return res.status(200).send({status:true,msg:"Updated Successfully",data:Updateb
     return res.status(500).send({status:false,msg:error.message})
     
 }
-
-
 }
 
 
@@ -166,8 +173,6 @@ const deleteBooks = async function (req, res) {
         console.log(err.message)
         res.status(500).send({ status: false, msg: err.message })
     }
-
-
-};
+}
 module.exports = { createBook, getBookById, getBooks, deleteBooks,UpdateBooks }
 
