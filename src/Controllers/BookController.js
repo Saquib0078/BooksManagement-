@@ -1,10 +1,8 @@
-const bookModel= require("../Models/BooksModel")
 const UserModel = require("../Models/UserModel")
 const {body,isValidObjectId,isValidISBN, validation} = require("../middleware/validation");
 const BooksModel = require("../Models/BooksModel");
 const valid=require("validator");
 const ReviewModel = require("../Models/ReviewModel");
-const { count } = require("../Models/BooksModel");
 
 
 
@@ -143,8 +141,6 @@ return res.status(200).send({status:true,msg:"Updated Successfully",data:Updateb
     return res.status(500).send({status:false,msg:error.message})
     
 }
-
-
 }
 
 
@@ -169,8 +165,6 @@ const deleteBooks = async function (req, res) {
         console.log(err.message)
         res.status(500).send({ status: false, msg: err.message })
     }
-
-
-};
+}
 module.exports = { createBook, getBookById, getBooks, deleteBooks,UpdateBooks }
 
