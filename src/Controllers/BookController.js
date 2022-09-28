@@ -3,6 +3,9 @@ const {body,isValidObjectId,isValidISBN, validation} = require("../middleware/va
 const BooksModel = require("../Models/BooksModel");
 const valid=require("validator");
 const ReviewModel = require("../Models/ReviewModel");
+const aws=require('aws-sdk')
+
+
 
 
 
@@ -34,7 +37,7 @@ let createBook= async function(req,res){
         if(!validation(data.category))  return res.status(400).send({status:false,msg:"category is required"})
         if(!validation(data.subcategory))  return res.status(400).send({status:false,msg:"subcategory is required"})
 
-        let savedUser= await bookModel.create(data)
+        let savedUser= await BooksModel.create(data)
 
         return res.status(201).send({status:true,msg:"book created successfully",data:savedUser})
 
@@ -129,7 +132,7 @@ if(!body(data)) return res.status(400).send({status:false,msg:"Input is Missing"
 let UniqueTitle =await BooksModel.findOne({title:data.title})
 if(UniqueTitle) return res.status(400).send({status:false,msg:"title  Must me Unique"})
 
-if(!isValidISBN(data.ISBN)) return res.status(400).send({status:false,msg:"ISBN should be of 13 digits"})
+// if(!isValidISBN(data.ISBN)) return res.status(400).send({status:false,msg:"ISBN should be of 13 digits"})
 let UniqueISBN =await BooksModel.findOne({ISBN:data.ISBN})
 
 if(UniqueISBN) return res.status(400).send({status:false,msg:" ISBN Must me Unique"})
@@ -166,5 +169,6 @@ const deleteBooks = async function (req, res) {
         res.status(500).send({ status: false, msg: err.message })
     }
 }
-module.exports = { createBook, getBookById, getBooks, deleteBooks,UpdateBooks }
+
+module.exports = { createBook, getBookById, getBooks, deleteBooks,UpdateBooks,}
 

@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
 const app = express();
+const aws=require('aws-sdk')
+const multer= require('multer')
 
 app.use(bodyParser.json());
-
+app.use(multer().any());
 
 mongoose.connect("mongodb+srv://kamrebaba:ironman@cluster0.lvfp80k.mongodb.net/group26Database", {
     useNewUrlParser: true
